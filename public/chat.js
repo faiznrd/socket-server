@@ -4,7 +4,7 @@ const userInput = $('#userName');
 const errUser = $('#err');
 const input = document.getElementById('pesan');
 const container = document.getElementById('container')
-const socket = io('https://fzlab-c2c3e.web.app/');
+const socket = io('https://fzchatapp.herokuapp.com/');
 function send(){
   waktunya();
   const isipesan = input.textContent.trim();
