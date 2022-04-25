@@ -2,9 +2,9 @@
 import { IncomingMessage } from 'http'
 import { WebSocket, WebSocketServer } from 'ws'
 import { initializeApp } from 'firebase/app';
-const wss = new WebSocketServer({
-    port: 3000
-})
+import express from 'express'
+const server = express().listen(3000)
+const wss = new WebSocketServer({server})
 
 interface IStatus {
     status: string
