@@ -1,9 +1,9 @@
 "use strict";
 exports.__esModule = true;
 var ws_1 = require("ws");
-var wss = new ws_1.WebSocketServer({
-    port: 3000
-});
+var express = require("express");
+var server = express().listen(3000);
+var wss = new ws_1.WebSocketServer({ server: server });
 // id for esp => esp8266_smart_lamp
 wss.on('connection', function (socket, req) {
     socket.on('message', function (data) {
@@ -11,9 +11,6 @@ wss.on('connection', function (socket, req) {
         var dataObj = JSON.parse(data.toString());
         console.log(dataObj);
         if (dataObj.event == 'esp8266_callback') {
-            console.log("espcallback", dataObj);
-            if (dataObj.data.status == true) {
-            }
             wss.clients.forEach(function each(client) {
                 if (client.readyState === ws_1.WebSocket.OPEN) {
                     client.send(JSON.stringify({

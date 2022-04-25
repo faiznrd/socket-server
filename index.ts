@@ -2,7 +2,7 @@
 import { IncomingMessage } from 'http'
 import { WebSocket, WebSocketServer } from 'ws'
 import { initializeApp } from 'firebase/app';
-import express from 'express'
+import * as express from 'express'
 const server = express().listen(3000)
 const wss = new WebSocketServer({server})
 
