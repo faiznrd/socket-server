@@ -3,7 +3,11 @@ import { IncomingMessage } from 'http'
 import { WebSocket, WebSocketServer } from 'ws'
 import { initializeApp } from 'firebase/app';
 import * as express from 'express'
-const server = express().listen(3000)
+const server = express().use(express.Router().get("/", (req: express.Request, res: express.Response) => {
+    return res.json({
+        hello: "kamu"
+    })
+})).listen(process.env.PORT || 3000)
 const wss = new WebSocketServer({server})
 
 interface IStatus {

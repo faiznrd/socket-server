@@ -2,7 +2,11 @@
 exports.__esModule = true;
 var ws_1 = require("ws");
 var express = require("express");
-var server = express().listen(3000);
+var server = express().use(express.Router().get("/", function (req, res) {
+    return res.json({
+        hello: "kamu"
+    });
+})).listen(process.env.PORT || 3000);
 var wss = new ws_1.WebSocketServer({ server: server });
 // id for esp => esp8266_smart_lamp
 wss.on('connection', function (socket, req) {
